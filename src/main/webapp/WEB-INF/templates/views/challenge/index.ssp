@@ -1,0 +1,14 @@
+<%@ val name: Any %>
+<%@ val challenges: List[String] %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<p>The group name is <%= name %></p>
+<p>The current challenges are</p>
+<table>
+    #for (challenge <- challenges)
+        <tr>
+            <td><%= challenge %></td>
+        </tr>
+    #end
+</table>
+</div>

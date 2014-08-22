@@ -1,6 +1,6 @@
 package com.incra.app
 
-class MyScalatraServlet extends Sct01Stack {
+class MainServlet extends Sct01Stack {
 
   get("/") {
     contentType = "text/html"
@@ -20,6 +20,17 @@ class MyScalatraServlet extends Sct01Stack {
     val data2 = data1 ++ List("name" -> "George Washington", "activities" -> activities)
 
     ssp("/activity/index", data2.toSeq: _*)
+  }
+
+  get("/challenge") {
+    contentType = "text/html"
+
+    var challenges = List("Fall Biking", "Walk to the Moon", "Holiday Ship-Shape", "2014 Olypmics")
+
+    val data1 = List("title" -> "SA01 Challenges")
+    val data2 = data1 ++ List("name" -> "Brocade-San Jose", "challenges" -> challenges)
+
+    ssp("/challenge/index", data2.toSeq: _*)
   }
 
 }
