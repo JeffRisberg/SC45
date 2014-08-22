@@ -1,0 +1,7 @@
+<%@ val foo: Any %>
+<%@ val bar: Any %>
+
+<div style="background: #999; padding: 6px">
+<p>Foo is <%= foo %></p>
+<p>Bar is <%= bar %></p>
+</div>
