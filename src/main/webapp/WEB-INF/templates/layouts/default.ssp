@@ -1,15 +1,21 @@
-<%@ val headline: String %>
 <%@ val title: String %>
 <%@ val body: String %>
 <html>
-    <head>
-        <title><%= title %></title>
-    </head>
-    <body>
-        <div class="container">
-        <h2 style="color:red"><%= headline %></h2>
-        <%= unescape(body) %>
-        </div>
-    </body>
+<head>
+<title><%= title %></title>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="header">
+    <a href="/">Home</a>
+    </div>
+    <div class="container">
+    <%= unescape(body) %>
+    </div>
+</body>
 </html>
 

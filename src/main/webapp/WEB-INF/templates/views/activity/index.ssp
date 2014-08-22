@@ -1,8 +1,8 @@
 <%@ val name: Any %>
 <%@ val activities: List[String] %>
 
-<div style="background: #999; padding: 6px">
-<p>The User name is <%= name %></p>
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<p>The user name is <%= name %></p>
 <p>The selected activities are</p>
 <table>
     #for (activity <- activities)

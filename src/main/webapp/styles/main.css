@@ -1,0 +1,10 @@
+body {
+}
+
+.header {
+    background: #000 url(../images/logo.png) no-repeat;
+    background-position: 2px 2px;
+    height: 42px;
+    padding-left: 260px;
+    padding-top: 5px;
+}
