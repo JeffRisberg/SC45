@@ -1,5 +1,6 @@
-<%@ val title: String %>
+<%@ val title: String = "Default Title" %>
 <%@ val body: String %>
+
 <html>
 <head>
 <title><%= title %></title>
