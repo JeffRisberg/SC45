@@ -1,9 +1,9 @@
-# sct01 #
+# SC45 #
 
 ## Build & Run ##
 
 ```sh
-$ cd sct01
+$ cd SC45
 $ ./sbt
 > container:start
 > browse
