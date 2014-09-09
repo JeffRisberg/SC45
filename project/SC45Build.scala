@@ -5,15 +5,15 @@ import org.scalatra.sbt.PluginKeys._
 import com.mojolly.scalate.ScalatePlugin._
 import ScalateKeys._
 
-object Sct01Build extends Build {
+object SC45Build extends Build {
   val Organization = "com.incra"
-  val Name = "sct01"
+  val Name = "SC45"
   val Version = "0.1.0-SNAPSHOT"
   val ScalaVersion = "2.10.4"
   val ScalatraVersion = "2.2.2"
 
   lazy val project = Project (
-    "sct01",
+    "SC45",
     file("."),
     settings = ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
       organization := Organization,
