@@ -1,13 +1,15 @@
+<% import com.incra.model.Activity %>
 <%@ val name: Any %>
-<%@ val activities: List[String] %>
+<%@ val activities: List[Activity] %>
 
 <div style="margin-top: 30px; background: #ccc; padding: 10px">
 <p>The user name is <%= name %></p>
-<p>The selected activities are</p>
-<table>
+<p>The selected activities are:</p>
+<table class="table">
     #for (activity <- activities)
         <tr>
-            <td><%= activity %></td>
+            <td><%= activity.name %></td>
+            <td><%= activity.uom %></td>
         </tr>
     #end
 </table>

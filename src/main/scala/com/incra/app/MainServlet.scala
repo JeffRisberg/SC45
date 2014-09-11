@@ -1,5 +1,11 @@
 package com.incra.app
 
+import com.incra.services.{ActivityService, ChallengeService}
+
+/**
+ * @author Jeff Risberg
+ * @since late August 2014
+ */
 class MainServlet extends SC45Stack {
 
   get("/") {
@@ -14,7 +20,7 @@ class MainServlet extends SC45Stack {
   get("/activity") {
     contentType = "text/html"
 
-    var activities = List("Hiking", "Walking", "Pilates", "Biking", "Spins", "Exercise")
+    var activities = ActivityService.getEntityList()
 
     val data1 = List("title" -> "SC45 Activities")
     val data2 = data1 ++ List("name" -> "George Washington", "activities" -> activities)
@@ -25,7 +31,7 @@ class MainServlet extends SC45Stack {
   get("/challenge") {
     contentType = "text/html"
 
-    var challenges = List("Fall Biking", "Walk to the Moon", "Holiday Ship-Shape", "2014 Olypmics")
+    var challenges = ChallengeService.getEntityList()
 
     val data1 = List("title" -> "SC45 Challenges")
     val data2 = data1 ++ List("name" -> "Brocade-San Jose", "challenges" -> challenges)
