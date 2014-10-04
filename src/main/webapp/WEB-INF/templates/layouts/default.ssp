@@ -12,7 +12,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <header><a href="/"><img src="/images/sc45_logo.png" alt="NE02"/></a></header>
+    <header><a href="/"><img src="/images/sc45_logo.png" alt="SC45"/></a></header>
     <div class="container">
         <%= unescape(body) %>
     </div>
