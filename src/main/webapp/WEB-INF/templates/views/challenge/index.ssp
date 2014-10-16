@@ -1,14 +1,22 @@
 <% import com.incra.model.Challenge %>
 <%@ val name: Any %>
-<%@ val challenges: List[Challenge] %>
+<%@ val challenges: List[com.incra.model.Challenge] %>
 
 <div style="margin-top: 30px; background: #ccc; padding: 10px">
 <p>The group name is <%= name %></p>
 <p>The current challenges are:</p>
 <table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Active</th>
+    </tr>
     #for (challenge <- challenges)
         <tr>
             <td>${challenge.name}</td>
+            <td>${challenge.teamworkType.name}</td>
             <td>${challenge.startDate}</td>
             <td>${challenge.endDate}</td>
             <td>${challenge.active}</td>

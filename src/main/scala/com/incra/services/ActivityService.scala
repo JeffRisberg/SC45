@@ -13,12 +13,11 @@ object ActivityService {
   def getEntityList(): List[Activity] = {
     var activities = ListBuffer.empty[Activity]
 
-    activities += new Activity("Hiking", "", "miles")
-    activities += new Activity("Walking", "", "steps")
-    activities += new Activity("Pilates", "", "times")
-    activities += new Activity("Biking", "", "miles")
-    activities += new Activity("Spins", "", "minutes")
-    activities += new Activity("Exercise", "", "minutes")
+    activities += new Activity(Some(1), "Hiking", "head up the mountain", "miles")
+    activities += new Activity(Some(2), "Walking", "enjoy the view", "steps")
+    activities += new Activity(Some(3), "Pilates", "take care of yourself", "times")
+    activities += new Activity(Some(4), "Biking", "spin those wheels", "miles")
+    activities += new Activity(Some(5), "Exercise", "do anything", "minutes")
     activities.toList
   }
 }

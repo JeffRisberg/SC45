@@ -1,10 +1,12 @@
 package com.incra.model
 
-import java.util.Date
+import java.sql.Date
 
 /**
+ * Definition of the Challenge entity
+ *
  * @author Jeff Risberg
- * @since 09/10/2014
+ * @since 06/11/2014
  */
-class Challenge(val name: String, val startDate: Date, val endDate: Date, val active: Boolean) {
-}
+case class Challenge(id: Option[Long], name: String, teamworkType: TeamworkType,
+                     startDate: Date, endDate: Date, active: Boolean) extends Entity[Long]
