@@ -1,5 +1,7 @@
 package com.incra.model
 
+import com.incra.model.Direction.Direction
+
 /**
  * Definition of the Leaderboard entity
  *

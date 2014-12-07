@@ -2,6 +2,8 @@ package com.incra.model
 
 import java.sql.Date
 
+import com.incra.model.TeamworkType.TeamworkType
+
 /**
  * Definition of the Challenge entity
  *
