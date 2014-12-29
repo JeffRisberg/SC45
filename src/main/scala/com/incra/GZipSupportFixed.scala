@@ -20,7 +20,8 @@ trait GZipSupportFixed extends Handler {
 
   abstract override def handle(req: HttpServletRequest, res: HttpServletResponse) {
     withRequestResponse(req, res) {
-      println("request check " + isGzip(req))
+      println("request check " + isGzip(req) + " url " + req.getRequestURI())
+
       if (isGzip(req)) {
         val gzos = new GZIPOutputStream(res.getOutputStream)
         val w = new PrintWriter(gzos)
