@@ -1,15 +1,21 @@
 package com.incra.app
 
+import java.io.{FileInputStream, File}
+import java.util.zip.Deflater
 import javax.servlet.http.HttpServletRequest
 
 import com.incra.GZipSupportFixed
 import org.fusesource.scalate.TemplateEngine
 import org.fusesource.scalate.layout.DefaultLayoutStrategy
+import org.scalatra.ScalatraBase._
 import org.scalatra._
 import org.scalatra.scalate.ScalateSupport
+import org.scalatra.util._
+import org.scalatra.util.io._
 
+import scala.annotation.tailrec
 import scala.collection.mutable
-import scala.util.Try
+import scala.util.{Failure, Success, Try}
 
 /**
  * @author Jeffrey Risberg
@@ -36,6 +42,40 @@ with ScalateSupport {
     super.templateAttributes ++ mutable.Map.empty // Add extra attributes here, they need bindings in the build file
   }
 
+  private final val GZIP_MAGIC: Int = 0x8b1f
+
+  /**
+   * Attempts to find a static resource matching the request path.  Override
+   * to return None to stop this.
+   */
+  override protected def serveStaticResource(): Option[Any] = {
+    servletContext.resource(request) map { _ =>
+      println("servingStaticResource " + request.hashCode() + " " + response.hashCode())
+
+      servletContext.getNamedDispatcher("default").forward(request, response)
+
+      response match {
+        case wGZR: WrappedGZipResponse =>
+          wGZR.addHeader("Content-Encoding", "gzip")
+
+          // This re-creates the GZip header
+          println("adding GZip header")
+          wGZR.origStream.write(GZIP_MAGIC.asInstanceOf[Byte])
+          wGZR.origStream.write((GZIP_MAGIC >> 8).asInstanceOf[Byte])
+          wGZR.origStream.write(Deflater.DEFLATED.asInstanceOf[Byte])
+          wGZR.origStream.write(0.asInstanceOf[Byte])
+          wGZR.origStream.write(0.asInstanceOf[Byte])
+          wGZR.origStream.write(0.asInstanceOf[Byte])
+          wGZR.origStream.write(0.asInstanceOf[Byte])
+          wGZR.origStream.write(0.asInstanceOf[Byte])
+          wGZR.origStream.write(0.asInstanceOf[Byte])
+          wGZR.origStream.write(0.asInstanceOf[Byte])
+
+          wGZR.getWriter().flush()
+          wGZR.getOutputStream().flush()
+      }
+    }
+  }
 
   notFound {
     // remove content type in case it was set through an action

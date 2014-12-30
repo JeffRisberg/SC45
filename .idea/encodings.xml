@@ -4,11 +4,8 @@
     <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/Activity.scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/Challenge.scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/Direction.scala" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/Direction.scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/Entity.scala" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/Enumeration.scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/Leaderboard.scala" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/TeamworkType.scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/scala/com/incra/model/TeamworkType.scala" charset="UTF-8" />
   </component>
 </project>

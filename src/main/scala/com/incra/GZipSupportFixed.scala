@@ -1,14 +1,14 @@
 package com.incra
 
+import java.io.PrintWriter
+
+import com.GZIPOutputStream
 import org.scalatra._
 
-import java.io.{ByteArrayOutputStream, OutputStream, IOException, PrintWriter}
-import java.util.zip.GZIPOutputStream
 import javax.servlet.{WriteListener, ServletOutputStream}
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpServletResponseWrapper
-import java.nio.charset.Charset
 
 /**
  * Patched
@@ -36,7 +36,7 @@ trait GZipSupportFixed extends Handler {
         val wrapped = new WrappedGZipResponse(r, gzsos, w)
 
         ScalatraBase.onCompleted { _ => {
-          println("response check " + isGzip(res))
+          println("response check " + isGzip(res) + " adding content-encoding")
           wrapped.addHeader("Content-Encoding", "gzip")
         }
         }
@@ -48,20 +48,24 @@ trait GZipSupportFixed extends Handler {
     }
   }
 
-  private class GZipServletOutputStream(gzos: GZIPOutputStream, orig: ServletOutputStream) extends ServletOutputStream {
+  class GZipServletOutputStream(gzos: GZIPOutputStream, orig: ServletOutputStream) extends ServletOutputStream {
     override def write(b: Int): Unit = gzos.write(b)
 
     override def setWriteListener(writeListener: WriteListener): Unit = orig.setWriteListener(writeListener)
 
     override def isReady: Boolean = orig.isReady()
+
+    def origStream: ServletOutputStream = orig
   }
 
-  private class WrappedGZipResponse(res: HttpServletResponse, gzsos: ServletOutputStream, w: PrintWriter) extends HttpServletResponseWrapper(res) {
+  class WrappedGZipResponse(res: HttpServletResponse, gzsos: GZipServletOutputStream, w: PrintWriter) extends HttpServletResponseWrapper(res) {
     override def getOutputStream: ServletOutputStream = gzsos
 
     override def getWriter: PrintWriter = w
 
     override def setContentLength(i: Int) = {} // ignoring content length as it won't be the same when gzipped
+
+    def origStream: ServletOutputStream = gzsos.origStream
   }
 
   /**
@@ -72,7 +76,7 @@ trait GZipSupportFixed extends Handler {
   }
 
   /**
-   * Returns true if Accept-Encoding contains gzip.
+   * Returns true if Content-Encoding contains gzip.
    */
   private[this] def isGzip(response: HttpServletResponse): Boolean = {
     Option(response.getHeader("Content-Encoding")).getOrElse("").toUpperCase.contains("GZIP")

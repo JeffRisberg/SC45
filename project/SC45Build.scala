@@ -10,9 +10,9 @@ object SC45Build extends Build {
   val Name = "SC45"
   val Version = "0.1.0-SNAPSHOT"
   val ScalaVersion = "2.10.4"
-  val ScalatraVersion = "2.2.2"
+  val ScalatraVersion = "2.3.0"
 
-  lazy val project = Project (
+  lazy val project = Project(
     "SC45",
     file("."),
     settings = ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
@@ -26,18 +26,18 @@ object SC45Build extends Build {
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
         "org.scalatra" %% "scalatra-specs2" % ScalatraVersion % "test",
         "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
-        "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225" % "container",
-        "org.eclipse.jetty" % "jetty-plus" % "9.1.3.v20140225" % "container",
-        "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar"))
+        "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "container",
+        "org.eclipse.jetty" % "jetty-plus" % "9.1.5.v20140505" % "container",
+        "javax.servlet" % "javax.servlet-api" % "3.1.0"
       ),
-      scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
+      scalateTemplateConfig in Compile <<= (sourceDirectory in Compile) { base =>
         Seq(
           TemplateConfig(
             base / "webapp" / "WEB-INF" / "templates",
-            Seq.empty,  /* default imports should be added here */
+            Seq.empty, /* default imports should be added here */
             Seq(
               Binding("context", "_root_.org.scalatra.scalate.ScalatraRenderContext", importMembers = true, isImplicit = true)
-            ),  /* add extra bindings here */
+            ), /* add extra bindings here */
             Some("templates")
           )
         )
