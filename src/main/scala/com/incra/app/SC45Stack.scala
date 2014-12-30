@@ -1,21 +1,13 @@
 package com.incra.app
 
-import java.io.{FileInputStream, File}
-import java.util.zip.Deflater
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 
 import com.incra.GZipSupportFixed
 import org.fusesource.scalate.TemplateEngine
 import org.fusesource.scalate.layout.DefaultLayoutStrategy
-import org.scalatra.ScalatraBase._
 import org.scalatra._
 import org.scalatra.scalate.ScalateSupport
-import org.scalatra.util._
-import org.scalatra.util.io._
-
-import scala.annotation.tailrec
 import scala.collection.mutable
-import scala.util.{Failure, Success, Try}
 
 /**
  * @author Jeffrey Risberg
