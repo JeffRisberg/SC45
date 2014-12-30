@@ -46,7 +46,7 @@ with ScalateSupport {
    * Attempts to find a static resource matching the request path.  Override
    * to return None to stop this.
    */
-  protected def serveStaticResource(request: HttpServletRequest, response: HttpServletResponse): Option[Any] = {
+  protected def serveStaticResourceFixed(request: HttpServletRequest, response: HttpServletResponse): Option[Any] = {
     servletContext.resource(request) map { _ =>
 
       response match {
@@ -70,6 +70,6 @@ with ScalateSupport {
     findTemplate(requestPath) map { path =>
       contentType = "text/html"
       layoutTemplate(path)
-    } orElse serveStaticResource(request, response) getOrElse resourceNotFound()
+    } orElse serveStaticResourceFixed(request, response) getOrElse resourceNotFound()
   }
 }
