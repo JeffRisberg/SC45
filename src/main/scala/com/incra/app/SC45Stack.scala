@@ -2,7 +2,7 @@ package com.incra.app
 
 import java.io.{FileInputStream, File}
 import java.util.zip.Deflater
-import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 
 import com.incra.GZipSupportFixed
 import org.fusesource.scalate.TemplateEngine
@@ -42,37 +42,23 @@ with ScalateSupport {
     super.templateAttributes ++ mutable.Map.empty // Add extra attributes here, they need bindings in the build file
   }
 
-  private final val GZIP_MAGIC: Int = 0x8b1f
-
   /**
    * Attempts to find a static resource matching the request path.  Override
    * to return None to stop this.
    */
-  override protected def serveStaticResource(): Option[Any] = {
+  protected def serveStaticResource(request: HttpServletRequest, response: HttpServletResponse): Option[Any] = {
     servletContext.resource(request) map { _ =>
-      println("servingStaticResource " + request.hashCode() + " " + response.hashCode())
-
-      servletContext.getNamedDispatcher("default").forward(request, response)
 
       response match {
         case wGZR: WrappedGZipResponse =>
           wGZR.addHeader("Content-Encoding", "gzip")
+      }
 
-          // This re-creates the GZip header
-          println("adding GZip header")
-          wGZR.origStream.write(GZIP_MAGIC.asInstanceOf[Byte])
-          wGZR.origStream.write((GZIP_MAGIC >> 8).asInstanceOf[Byte])
-          wGZR.origStream.write(Deflater.DEFLATED.asInstanceOf[Byte])
-          wGZR.origStream.write(0.asInstanceOf[Byte])
-          wGZR.origStream.write(0.asInstanceOf[Byte])
-          wGZR.origStream.write(0.asInstanceOf[Byte])
-          wGZR.origStream.write(0.asInstanceOf[Byte])
-          wGZR.origStream.write(0.asInstanceOf[Byte])
-          wGZR.origStream.write(0.asInstanceOf[Byte])
-          wGZR.origStream.write(0.asInstanceOf[Byte])
+      servletContext.getNamedDispatcher("default").include(request, response)
 
+      response match {
+        case wGZR: WrappedGZipResponse =>
           wGZR.getWriter().flush()
-          wGZR.getOutputStream().flush()
       }
     }
   }
@@ -84,6 +70,6 @@ with ScalateSupport {
     findTemplate(requestPath) map { path =>
       contentType = "text/html"
       layoutTemplate(path)
-    } orElse serveStaticResource() getOrElse resourceNotFound()
+    } orElse serveStaticResource(request, response) getOrElse resourceNotFound()
   }
 }

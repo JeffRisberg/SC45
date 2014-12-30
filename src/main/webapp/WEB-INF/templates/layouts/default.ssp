@@ -9,18 +9,17 @@
 <link rel="stylesheet" href="../styles/main.css"/>
 
 <script src="../js/jquery-1.11.1.min.js"></script>
-<script src="../js/small.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header><a href="/"><img src="/images/sc45_logo.png" alt="SC45"/></a></header>
-<a href="/"><img src="/images/med_logo.png" alt="SC45" width="200"/></a>
-<a href="/"><img src="/images/big_logo.png" alt="SC45" width="200"/></a>
-<a href="/"><img src="/images/small_logo.png" alt="SC45" width="200"/></a>
 
-    <div class="container">
-        <%= unescape(body) %>
-    </div>
+<div class="container">
+    <a href="/"><img src="/images/small_logo.png" alt="SC45" width="900"/></a>
+
+    <%= unescape(body) %>
+</div>
+
 </body>
 </html>
 

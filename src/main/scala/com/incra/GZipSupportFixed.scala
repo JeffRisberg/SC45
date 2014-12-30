@@ -1,8 +1,8 @@
 package com.incra
 
 import java.io.PrintWriter
+import java.util.zip.GZIPOutputStream
 
-import com.GZIPOutputStream
 import org.scalatra._
 
 import javax.servlet.{WriteListener, ServletOutputStream}
@@ -20,7 +20,6 @@ trait GZipSupportFixed extends Handler {
 
   abstract override def handle(req: HttpServletRequest, res: HttpServletResponse) {
     withRequestResponse(req, res) {
-      println("request check " + isGzip(req) + " url " + req.getRequestURI())
 
       if (isGzip(req)) {
         val gzos = new GZIPOutputStream(res.getOutputStream)
@@ -36,8 +35,9 @@ trait GZipSupportFixed extends Handler {
         val wrapped = new WrappedGZipResponse(r, gzsos, w)
 
         ScalatraBase.onCompleted { _ => {
-          println("response check " + isGzip(res) + " adding content-encoding")
-          wrapped.addHeader("Content-Encoding", "gzip")
+          if (! isGzip(wrapped)) {
+            wrapped.addHeader("Content-Encoding", "gzip")
+          }
         }
         }
 
@@ -54,8 +54,6 @@ trait GZipSupportFixed extends Handler {
     override def setWriteListener(writeListener: WriteListener): Unit = orig.setWriteListener(writeListener)
 
     override def isReady: Boolean = orig.isReady()
-
-    def origStream: ServletOutputStream = orig
   }
 
   class WrappedGZipResponse(res: HttpServletResponse, gzsos: GZipServletOutputStream, w: PrintWriter) extends HttpServletResponseWrapper(res) {
@@ -64,8 +62,6 @@ trait GZipSupportFixed extends Handler {
     override def getWriter: PrintWriter = w
 
     override def setContentLength(i: Int) = {} // ignoring content length as it won't be the same when gzipped
-
-    def origStream: ServletOutputStream = gzsos.origStream
   }
 
   /**
