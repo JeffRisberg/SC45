@@ -12,7 +12,7 @@ class MainServlet extends SC45Stack {
     contentType = "text/html"
 
     val data1 = List("title" -> "SC45 Example")
-    val data2 = data1 ++ List("city" -> "Palo Alto", "state" -> "California", "population" -> 66363)
+    val data2 = data1 ++ List("city" -> "Palo Alto", "state" -> "California", "population" -> 66364)
 
     ssp("/index", data2.toSeq: _*)
   }
