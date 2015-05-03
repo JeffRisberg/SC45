@@ -20,6 +20,7 @@
     <%= unescape(body) %>
 </div>
 
+<footer>Scala 2.10.4, Scalatra 2.2.2, Bootstrap 3.2.0</footer>
 </body>
 </html>
 

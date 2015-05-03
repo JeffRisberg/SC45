@@ -3,7 +3,7 @@
 <%@ val population: Integer %>
 
 <a href="/"><img src="/images/med_logo.png" alt="SC45" width="900"/></a>
-<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<div style="margin-top: 30px; background: #ccc; padding: 10px; width: 900px">
 <h3><a href="/activity">Activities</a></h3>
 <h3><a href="/challenge">Challenges</a></h3>
 <p>City: <%= city %></p>
