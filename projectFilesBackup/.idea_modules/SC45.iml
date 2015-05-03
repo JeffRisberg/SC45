@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="web" name="Web">
+    <facet type="scala" name="Scala">
       <configuration>
-        <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/../src/main/webapp/WEB-INF/web.xml" />
-        </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/../src/main/webapp" relative="/" />
-        </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/../src/main/scala" />
-          <root url="file://$MODULE_DIR$/../src/main/java" />
-          <root url="file://$MODULE_DIR$/../target/scala-2.10/src_managed/main/scalate" />
-          <root url="file://$MODULE_DIR$/../target/scala-2.10/src_managed/main" />
-          <root url="file://$MODULE_DIR$/../src/main/resources" />
-        </sourceRoots>
+        <option name="compilerLibraryLevel" value="Project" />
+        <option name="compilerLibraryName" value="SBT: scala:2.10.4" />
+        <option name="fsc" value="true" />
       </configuration>
     </facet>
   </component>
@@ -39,6 +29,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.4" level="project" />
     <orderEntry type="library" name="SBT: org.scalatra:scalatra_2.10:2.3.0" level="project" />
     <orderEntry type="library" name="SBT: org.scalatra:scalatra-common_2.10:2.3.0" level="project" />
     <orderEntry type="library" name="SBT: org.slf4j:slf4j-api:1.7.7" level="project" />
@@ -92,6 +83,6 @@
     <orderEntry type="library" scope="TEST" name="SBT: org.objenesis:objenesis:1.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: junit:junit:4.11:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.specs2:classycle:1.4.3:test" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.4" level="project" />
   </component>
 </module>
+
