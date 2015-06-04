@@ -20,6 +20,8 @@ object ActivityService {
     activities += new Activity(Some(5), "Zumba", "dance, dance, dance!", "minutes")
     activities += new Activity(Some(6), "Exercise", "do anything", "minutes")
 
+    activities += new Activity(Some(5), "Exercise", "do anything", "minutes")
+    activities += new Activity(Some(6), "Martial Arts", "release your inner ninja", "minutes")
     activities.toList
   }
 }
