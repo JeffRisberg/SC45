@@ -9,8 +9,8 @@ object SC45Build extends Build {
   val Organization = "com.incra"
   val Name = "SC45"
   val Version = "0.1.0-SNAPSHOT"
-  val ScalaVersion = "2.10.4"
-  val ScalatraVersion = "2.2.2"
+  val ScalaVersion = "2.10.5"
+  val ScalatraVersion = "2.3.0"
 
   lazy val project = Project(
     "SC45",
