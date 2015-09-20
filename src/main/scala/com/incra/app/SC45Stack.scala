@@ -3,6 +3,7 @@ package com.incra.app
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 
 import com.incra.GZipSupportFixed
+import com.incra.infrastructure.Logging
 import org.fusesource.scalate.TemplateEngine
 import org.fusesource.scalate.layout.DefaultLayoutStrategy
 import org.scalatra._
@@ -15,7 +16,8 @@ import scala.collection.mutable
  */
 trait SC45Stack extends ScalatraServlet
 with GZipSupportFixed
-with ScalateSupport {
+with ScalateSupport
+with Logging {
 
   /* wire up the precompiled templates */
   override protected def defaultTemplatePath: List[String] = List("/WEB-INF/templates/views")
