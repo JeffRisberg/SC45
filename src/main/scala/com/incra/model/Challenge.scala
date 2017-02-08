@@ -8,7 +8,11 @@ import com.incra.model.TeamworkType.TeamworkType
  * Definition of the Challenge entity
  *
  * @author Jeff Risberg
- * @since 06/11/2014
+ * @since 06/11/2014 (revised to use non-case classes, October 2015)
  */
-case class Challenge(id: Option[Long], name: String, teamworkType: TeamworkType,
-                     startDate: Date, endDate: Date, active: Boolean) extends Entity[Long]
+class Challenge(var id: Option[Long],
+                var name: String,
+                var teamworkType: TeamworkType,
+                var startDate: Date,
+                var endDate: Date,
+                var active: Boolean) extends Entity[Long]

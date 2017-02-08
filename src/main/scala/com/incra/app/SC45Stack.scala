@@ -2,6 +2,7 @@ package com.incra.app
 
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 
+import com.escalatesoft.subcut.inject.Injectable
 import com.incra.GZipSupportFixed
 import com.incra.infrastructure.Logging
 import org.fusesource.scalate.TemplateEngine
@@ -15,6 +16,7 @@ import scala.collection.mutable
  * @since 9/10/2014
  */
 trait SC45Stack extends ScalatraServlet
+with Injectable
 with GZipSupportFixed
 with ScalateSupport
 with Logging {

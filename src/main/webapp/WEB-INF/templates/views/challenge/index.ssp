@@ -1,6 +1,6 @@
 <% import com.incra.model.Challenge %>
 <%@ val name: Any %>
-<%@ val challenges: List[com.incra.model.Challenge] %>
+<%@ val challenges: Seq[com.incra.model.Challenge] %>
 
 <div style="margin-top: 30px; background: #ccc; padding: 10px">
 <p>The group name is <%= name %></p>

@@ -6,6 +6,8 @@ import com.incra.model.Direction.Direction
  * Definition of the Leaderboard entity
  *
  * @author Jeff Risberg
- * @since 10/12/2014
+ * @since 10/12/2014 (revised to use non-case classes, October 2015)
  */
-case class Leaderboard(id: Option[Long], name: String, direction: Direction) extends Entity[Long]
+class Leaderboard(var id: Option[Long],
+                  var name: String,
+                  var direction: Direction) extends Entity[Long]
